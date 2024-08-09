@@ -12,8 +12,8 @@ def connect_to_psql(user_host: str, user_port: str, user_database: str, user_nam
         password=f"{user_password}"
     )
     curs = connect.cursor()
-    curs.execute("DROP TABLE customers;")
-    curs.execute("CREATE TABLE customers (customer_id CHAR(5) PRIMARY KEY, company_name VARCHAR(100) NOT NULL, contact_name varchar(100) NOT NULL);")
+    curs.execute("DROP TABLE employers;")
+    curs.execute("CREATE TABLE employers (employer_id CHAR(5) PRIMARY KEY, company_name VARCHAR(100) NOT NULL, contact_name varchar(100) NOT NULL);")
     connect.commit()
     info = f"INSERT INTO customers VALUES(12540, 'Power', 'Petro') returning *"
     curs.execute(info)
