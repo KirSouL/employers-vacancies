@@ -1,7 +1,7 @@
 
 class Vacancy:
     """Класс Vacancy формирующий новую структуру для JSON файла вакансий работодателя с сайта hh.ru"""
-    def __init__(self, id_vacancy: int, name_vacancy: str, url_vacancy: str, employer_id: int) -> None:
+    def __init__(self, id_vacancy: str, name_vacancy: str, url_vacancy: str, employer_id: str) -> None:
         self.id_vacancy = id_vacancy
         self.salary_id = f"sal{self.id_vacancy}"
         self.snippet_id = f"snip{self.id_vacancy}"
@@ -19,19 +19,22 @@ class Vacancy:
                 f"URL ссылка на вакансию: {self.url_vacancy}\n")
 
     def __repr__(self):
-        return (f"{self.__class__.__name__}({self.id_vacancy}, {self.salary_id}, {self.snippet_id}, "
-                f"{self.employer_id}, {self.name_vacancy}, {self.url_vacancy})")
+        return (f"{self.__class__.__name__}({self.id_vacancy}, {self.name_vacancy}, {self.url_vacancy},"
+                f"{self.employer_id})")
 
 
-class City:
+class CityVacancy:
     def __init__(self, city_vacancy_id: str, city: dict | None) -> None:
         self.city_vac_id = city_vacancy_id
         self.id_city = self._city(city)[0]
         self.city_office = self._city(city)[1]
         self.url_city = self._city(city)[2]
 
-    def __repr__(self):
-        return f"{self.__class__.__name__}({self.city_vac_id}, {self.id_city}, {self.city_office}, {self.url_city})"
+    def __str__(self):
+        return (f"{self.__class__.__name__}({self.city_vac_id},\n"
+                f"'id': {self.id_city},\n"
+                f"'name': {self.city_office},\n"
+                f"'url': {self.url_city})")
 
     @staticmethod
     def _city(city: dict | None) -> list:
@@ -47,7 +50,7 @@ class City:
         return list_city_info
 
 
-class Salary:
+class SalaryVacancy:
 
     def __init__(self, salary_id: str, salary: dict | None) -> None:
         self.sal_id = salary_id
@@ -63,8 +66,11 @@ class Salary:
             self.gross = salary["gross"]
 
     def __str__(self):
-        return (f"{self.__class__.__name__}({self.sal_id}, {self.salary_to }, {self.salary_from}, {self.currency},"
-                f"{self.gross})")
+        return (f"{self.__class__.__name__}({self.sal_id},\n"
+                f"'salary_to': {self.salary_to },\n"
+                f"'salary_from': {self.salary_from},\n"
+                f"'currency': {self.currency},\n"
+                f"'gross': {self.gross}})")
 
     @staticmethod
     def _unpacking_salary(salary: int | None) -> int | None:
@@ -89,7 +95,7 @@ class Salary:
         return currency
 
 
-class Snippet:
+class SnippetVacancy:
 
     def __init__(self, snippet_id: str, snippet_requirement: str, snippet_responsibility: str) -> None:
         self.snip_id = snippet_id
