@@ -67,10 +67,10 @@ class SalaryVacancy:
 
     def __str__(self):
         return (f"{self.__class__.__name__}({self.sal_id},\n"
-                f"'salary_to': {self.salary_to },\n"
+                f"'salary_to': {self.salary_to},\n"
                 f"'salary_from': {self.salary_from},\n"
                 f"'currency': {self.currency},\n"
-                f"'gross': {self.gross}})")
+                f"'gross': {self.gross})")
 
     @staticmethod
     def _unpacking_salary(salary: int | None) -> int | None:
