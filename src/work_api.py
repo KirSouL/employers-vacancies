@@ -82,6 +82,7 @@ class ParserEmployer(BaseParser):
             
 class ParserEmployerVacancy(BaseParser):
     vacancies_employer = []
+
     def __init__(self, name_file_vacancy: str, id_employer: int, max_page: int = 20) -> None:
 
         self.name_file_vac = name_file_vacancy
@@ -97,6 +98,7 @@ class ParserEmployerVacancy(BaseParser):
         while self.params.get('page') != 20:
             # self.params['page'] = param
             responce = requests.get(self.url_vac_emp, headers=self.headers, params=self.params, timeout=10)
+
             if responce.json()["items"] == []:
                 break
             else:
