@@ -37,7 +37,6 @@ def main():
     conv()
 
     db = config_db()
-
     manager = DBManager(db)
     manager.create_table()
 

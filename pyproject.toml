@@ -2,7 +2,7 @@
 name = "work-to-vacancy"
 version = "0.1.0"
 description = ""
-authors = ["KirSouL <Sokil-Ki-So@yandex.ru>"]
+authors = ["kss kss@example.com"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
