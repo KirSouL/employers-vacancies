@@ -201,8 +201,7 @@ class Logo(GeneratorFileBase):
         with open(f"{path()}/empl.json", "r", encoding="utf-8") as file:
             load_file = json.load(file)
             for item in load_file:
-                logo = LogoEmpl(item["id"], item["logo_urls"]["original"], item["logo_urls"]["240"],
-                                item["logo_urls"]["90"])
+                logo = LogoEmpl(item["id"], item["logo_urls"])
                 self.list_logo_employer.append(logo)
 
         return self.list_logo_employer

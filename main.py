@@ -14,7 +14,7 @@ LIST_NAME = ["employers.csv", "logo.csv", "vacancies.csv", "salary.csv", "city.c
 def main():
     counter = 0
 
-    while counter < 2:
+    while counter < 10:
         user_empl = input("Введите название компании работодателя: ").lower()
         path_to_empl = f"{path()}/empl.json"
         empl = Empl(path_to_empl, user_empl)
