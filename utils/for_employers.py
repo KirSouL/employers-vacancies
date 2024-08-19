@@ -18,12 +18,17 @@ class Employer:
 class LogoEmployer:
     """Класс дающий информацию о логотипе работодателя"""
 
-    def __init__(self, id_logo: str, picture_original: str, picture_240: str, picture_90: str) -> None:
+    def __init__(self, id_logo: str, logo: dict and None) -> None:
         self.id_logo = f"logo{id_logo}"
         self.id_employer = int(id_logo)
-        self.pict_orig = picture_original
-        self.pict_240 = picture_240
-        self.pict_90 = picture_90
+        if not isinstance(logo, dict):
+            self.pict_orig = None
+            self.pict_240 = None
+            self.pict_90 = None
+        else:
+            self.pict_orig = logo["originsl"]
+            self.pict_240 = logo["240"]
+            self.pict_90 = logo["90"]
 
     def __str__(self) -> str:
         return f"{self.__class__.__name__}({self.id_logo}, {self.id_employer}, {self.pict_orig}, {self.pict_240}," \
