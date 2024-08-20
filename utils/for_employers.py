@@ -26,7 +26,7 @@ class LogoEmployer:
             self.pict_240 = None
             self.pict_90 = None
         else:
-            self.pict_orig = logo["originsl"]
+            self.pict_orig = logo["original"]
             self.pict_240 = logo["240"]
             self.pict_90 = logo["90"]
 

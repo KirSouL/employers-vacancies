@@ -12,15 +12,15 @@ LIST_NAME = ["employers.csv", "logo.csv", "vacancies.csv", "salary.csv", "city.c
 
 
 def main():
-    counter = 0
 
-    while counter < 10:
-        user_empl = input("Введите название компании работодателя: ").lower()
-        path_to_empl = f"{path()}/empl.json"
-        empl = Empl(path_to_empl, user_empl)
-        empl.load_file()
-        empl.save_file()
-        counter += 1
+    with open(f"{path()}/list_employers.json", "r", encoding="utf-8") as file:
+        load_list_employers = json.load(file)
+
+        for company in load_list_employers:
+            path_to_empl = f"{path()}/empl.json"
+            empl = Empl(path_to_empl, company)
+            empl.load_file()
+            empl.save_file()
 
     print("Получение данных о вакансиях работодателя...")
 
@@ -43,7 +43,7 @@ def main():
     for name in LIST_NAME:
         path_to_file = f"{path()}/{name}"
         name_table = name.split(".")[0]
-        print(manager.load_info_in_table(path_to_file, name_table))
+        manager.load_info_in_table(path_to_file, name_table)
 
     user_interface(db)
 

@@ -77,4 +77,4 @@ class ParserEmployerVacancy(BaseParser):
     def save_file(self):
         """Метод сохраняющий информацию о вакансиях работодателя в файл json."""
         with open(self.name_file_vac, "w", encoding="utf-8") as file:
-            json.dump(self.vacancies_employer, file, indent=4)
+            json.dump(self.vacancies_employer, file)

@@ -113,7 +113,6 @@ def user_interface(database: dict):
             table_console = PrettyTable(["company_name", "url_company", "name_vacancy", "url_vacancy",
                                          "salary_to", "salary_from", "currency"])
 
-            print(info)
             for item in info:
                 list_company.append(item[9])
                 list_name_vacancy.append(item[2])
