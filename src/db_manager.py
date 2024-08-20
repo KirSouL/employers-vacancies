@@ -51,7 +51,7 @@ class DBManager(ManagerBase):
         self.password = database["password"]
 
     def _open_connect(self) -> list:
-        """Метод класса DatabasePostgres осуществляющий открытие соединения и указателя к БД"""
+        """Метод осуществляющий открытие соединения и указателя к базовой БД"""
         auto_commit = psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT
         conn = psycopg2.connect(host=self.host, port=self.port, user=self.user,
                                 password=self.password)
@@ -73,7 +73,7 @@ class DBManager(ManagerBase):
         cur.execute("CREATE DATABASE info_employers;")
         conn.commit()
 
-        cl_cur, cl_conn = self._close_connect(conn, cur)
+        self._close_connect(conn, cur)
 
     def del_database(self) -> None:
         """Метод класса DatabasePostgres осуществляющий удаление БД"""
@@ -82,7 +82,7 @@ class DBManager(ManagerBase):
         cur.execute("DROP DATABASE IF EXISTS info_employers;")
         conn.commit()
 
-        cl_cur, cl_conn = self._close_connect(conn, cur)
+        self._close_connect(conn, cur)
 
     def create_path_to_schema(self) -> None:
         conn, cur = self._open_connect()
@@ -90,7 +90,7 @@ class DBManager(ManagerBase):
         cur.execute("SET search_path TO info_employers;")
         conn.commit()
 
-        cl_cur, cl_conn = self._close_connect(conn, cur)
+        self._close_connect(conn, cur)
 
     def create_table(self) -> None:
         """Метод класса DatabasePostgres осуществляющий формирование таблиц БД"""
@@ -146,7 +146,7 @@ class DBManager(ManagerBase):
 
         conn.commit()
 
-        cl_cur, cl_conn = self._close_connect(conn, cur)
+        self._close_connect(conn, cur)
 
     def del_table(self) -> None:
         """Метод класса DatabasePostgres осуществляющий удаление таблиц БД"""
@@ -161,7 +161,7 @@ class DBManager(ManagerBase):
 
         conn.commit()
 
-        cl_cur, cl_conn = self._close_connect(conn, cur)
+        self._close_connect(conn, cur)
 
     def load_info_in_table(self, path_to_file_csv: str, table_name: str) -> None:
         """Метод класса DatabasePostgres осуществляющий заполнение данными таблиц БД"""
@@ -177,7 +177,7 @@ class DBManager(ManagerBase):
 
         conn.commit()
 
-        cl_cur, cl_conn = self._close_connect(conn, cur)
+        self._close_connect(conn, cur)
 
     def get_companies_and_vacancies_count(self) -> list:
         """
@@ -194,7 +194,7 @@ class DBManager(ManagerBase):
         conn.commit()
         all_info = cur.fetchall()
 
-        cl_cur, cl_conn = self._close_connect(conn, cur)
+        self._close_connect(conn, cur)
 
         return all_info
 
@@ -215,7 +215,7 @@ class DBManager(ManagerBase):
         conn.commit()
         all_info = cur.fetchall()
 
-        cl_cur, cl_conn = self._close_connect(conn, cur)
+        self._close_connect(conn, cur)
 
         return all_info
 
@@ -231,7 +231,7 @@ class DBManager(ManagerBase):
         conn.commit()
         all_info = cur.fetchall()
 
-        cl_cur, cl_conn = self._close_connect(conn, cur)
+        self._close_connect(conn, cur)
 
         return all_info
 
@@ -251,7 +251,7 @@ class DBManager(ManagerBase):
         conn.commit()
         all_info = cur.fetchall()
 
-        cl_cur, cl_conn = self._close_connect(conn, cur)
+        self._close_connect(conn, cur)
 
         return all_info
 
@@ -270,6 +270,6 @@ class DBManager(ManagerBase):
         conn.commit()
         all_info = cur.fetchall()
 
-        cl_cur, cl_conn = self._close_connect(conn, cur)
+        self._close_connect(conn, cur)
 
         return all_info
