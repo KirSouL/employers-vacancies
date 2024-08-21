@@ -1,7 +1,6 @@
 from src.work_api import ParserEmployer as Empl, ParserEmployerVacancy as EmplVac
 from config import path_to_data as path
 from connector import config_db
-from tqdm import tqdm
 from utils.converter import conv
 import json
 from src.db_manager import DBManager
@@ -27,7 +26,7 @@ def main():
     with open(f"{path()}/empl.json", "r", encoding="utf-8") as file:
         load_file = json.load(file)
 
-        for item in tqdm(range(0, len(load_file))):
+        for item in range(0, len(load_file)):
             path_vac = f"{path()}/vac_empl.json"
             vac_empl = EmplVac(path_vac, load_file[item]["id"])
             vac_empl.load_file()
@@ -38,7 +37,12 @@ def main():
 
     db = config_db()
     manager = DBManager(db)
-    manager.create_table()
+    try:
+        manager.create_table()
+    except:
+        print("Таблицы в БД ранее были созданы. Сейчас всё исправим.")
+        manager.del_table()
+        manager.create_table()
 
     for name in LIST_NAME:
         path_to_file = f"{path()}/{name}"
